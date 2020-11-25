@@ -1,0 +1,18 @@
+jobs:
+  build:
+    name: Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Begin
+        uses: actions/checkout@v2
+      - name: Download Deps
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Execute Unit Tests
+        run: ./verify/main
+
+name: Run
+
+on:
+  schedule:
+    - cron: "15 */6 * * *"
